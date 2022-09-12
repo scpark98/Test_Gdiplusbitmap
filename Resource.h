@@ -9,15 +9,18 @@
 #define IDR_MAINFRAME                   128
 #define IDB_CREAM                       130
 #define IDB_POSTER                      131
-#define IDB_PNG2                        132
+#define IDB_NORMAL                      131
 #define IDB_APPLE                       132
 #define IDB_WINDOW                      133
+#define IDB_DISABLED                    134
+#define IDB_DOWN                        135
+#define IDB_OVER                        136
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        134
+#define _APS_NEXT_RESOURCE_VALUE        137
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

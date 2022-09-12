@@ -14,7 +14,7 @@ public:
 	CTestGdiplusbitmapDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
 
 	CGdiPlusBitmapResource m_img_back;
-	CGdiPlusBitmap m_copied;
+	CGdiPlusBitmapResource m_copied;
 
 
 // 대화 상자 데이터입니다.

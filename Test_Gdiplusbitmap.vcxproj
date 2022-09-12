@@ -251,6 +251,9 @@
     <Image Include="res\01.png" />
     <Image Include="res\04.png" />
     <Image Include="res\3_small.jpg" />
+    <Image Include="res\btn72_disabled.png" />
+    <Image Include="res\btn72_down.png" />
+    <Image Include="res\btn72_normal.png" />
     <Image Include="res\Test_Gdiplusbitmap.ico" />
     <Image Include="res\window.jpg" />
   </ItemGroup>

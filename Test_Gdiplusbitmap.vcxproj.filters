@@ -101,5 +101,14 @@
     <Image Include="res\window.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\btn72_disabled.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\btn72_down.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\btn72_normal.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

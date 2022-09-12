@@ -110,11 +110,12 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	m_img_back.Load(IDB_WINDOW, _T("JPG"));
 	//m_img_back.clone(&m_copied);
-	m_img_back.deep_copy(&m_copied);
-	m_img_back.Load(IDB_CREAM, _T("PNG"));
-
-	//m_img_back.rotate(45);
-	m_img_back.rotate(Gdiplus::Rotate90FlipY);
+	//m_img_back.deep_copy(&m_copied);
+	m_copied.Load(IDB_NORMAL, _T("PNG"));
+	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
+	m_copied.set_transparent(0.5);
+	m_copied.rotate(45);
+	//m_img_back.rotate(Gdiplus::Rotate90FlipY);
 
 
 	RestoreWindowPosition(&theApp, this);
@@ -169,9 +170,24 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		CMemoryDC	dc(&dc1, &rc, false);
 		Graphics	g(dc.m_hDC, rc);
 
+		int w = m_img_back.m_pBitmap->GetWidth();
+		int h = m_img_back.m_pBitmap->GetHeight();
+
+
 		//dc.FillSolidRect(rc, m_crBack);
-		g.DrawImage(m_copied, 0, 0, rc.Width(), rc.Height());
-		g.DrawImage(m_img_back, 100, 100);
+		//g.DrawImage(m_img_back, Rect(0, 0, rc.Width(), rc.Height()), 0, 0, w, h, UnitPixel, &ia);
+		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
+		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
+
+		w = m_copied.m_pBitmap->GetWidth();
+		h = m_copied.m_pBitmap->GetHeight();
+
+		g.DrawImage(m_copied, rc.CenterPoint().x - w/2, rc.CenterPoint().y - h/2);
+		//ia.SetColorMatrix(&colorMatrix, ColorMatrixFlagsDefault, ColorAdjustTypeBitmap);
+		//g.DrawImage(m_copied, Rect(100, 100, m_copied.width(), m_copied.height()), 0, 0, w, h, UnitPixel, &ia);
+
+		DrawLine(&dc, 0, 0, rc.right, rc.bottom, red);
+		DrawLine(&dc, 0, rc.bottom, rc.right, 0, red);
 		/*
 		g.DrawImage(m_file_image,
 			(int)(rc.Width() - m_file_image->GetWidth() - 20),
