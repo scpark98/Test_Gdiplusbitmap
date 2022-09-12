@@ -69,7 +69,10 @@ BOOL CTestGdiplusbitmapApp::InitInstance()
 	// 해당 설정이 저장된 레지스트리 키를 변경하십시오.
 	// TODO: 이 문자열을 회사 또는 조직의 이름과 같은
 	// 적절한 내용으로 수정해야 합니다.
-	SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
+	SetRegistryKey(_T("Legends Software"));
+
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput;
+	Gdiplus::GdiplusStartup(&m_gdiplusToken, &gdiplusStartupInput, NULL);
 
 	CTestGdiplusbitmapDlg dlg;
 	m_pMainWnd = &dlg;
@@ -105,3 +108,12 @@ BOOL CTestGdiplusbitmapApp::InitInstance()
 	return FALSE;
 }
 
+
+
+int CTestGdiplusbitmapApp::ExitInstance()
+{
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+	Gdiplus::GdiplusShutdown(m_gdiplusToken);
+
+	return CWinApp::ExitInstance();
+}

@@ -8,6 +8,9 @@
 #include "Test_GdiplusbitmapDlg.h"
 #include "afxdialogex.h"
 
+#include "../../Common/Functions.h"
+#include "../../Common/MemoryDC.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -67,6 +70,9 @@ BEGIN_MESSAGE_MAP(CTestGdiplusbitmapDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDOK, &CTestGdiplusbitmapDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &CTestGdiplusbitmapDlg::OnBnClickedCancel)
+	ON_WM_ERASEBKGND()
+	ON_WM_WINDOWPOSCHANGED()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -102,6 +108,16 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	m_img_back.Load(IDB_WINDOW, _T("JPG"));
+	//m_img_back.clone(&m_copied);
+	m_img_back.deep_copy(&m_copied);
+	m_img_back.Load(IDB_CREAM, _T("PNG"));
+
+	//m_img_back.rotate(45);
+	m_img_back.rotate(Gdiplus::Rotate90FlipY);
+
+
+	RestoreWindowPosition(&theApp, this);
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -144,7 +160,25 @@ void CTestGdiplusbitmapDlg::OnPaint()
 	}
 	else
 	{
-		CDialogEx::OnPaint();
+		CRect rc;
+		CPaintDC dc1(this);
+
+		GetClientRect(rc);
+
+		//배경을 그려주고 이미지를 그리므로 여기서는 CMemoryDC를 이용하여 더블버퍼링을 해줘야 안깜빡인다.
+		CMemoryDC	dc(&dc1, &rc, false);
+		Graphics	g(dc.m_hDC, rc);
+
+		//dc.FillSolidRect(rc, m_crBack);
+		g.DrawImage(m_copied, 0, 0, rc.Width(), rc.Height());
+		g.DrawImage(m_img_back, 100, 100);
+		/*
+		g.DrawImage(m_file_image,
+			(int)(rc.Width() - m_file_image->GetWidth() - 20),
+			(int)(rc.Height() - m_file_image->GetHeight() - 50),
+			m_file_image->GetWidth(),
+			m_file_image->GetHeight());
+		*/
 	}
 }
 
@@ -159,8 +193,6 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	CDialogEx::OnOK();
 }
 
 
@@ -168,4 +200,30 @@ void CTestGdiplusbitmapDlg::OnBnClickedCancel()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CDialogEx::OnCancel();
+}
+
+
+BOOL CTestGdiplusbitmapDlg::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	return FALSE;
+	return CDialogEx::OnEraseBkgnd(pDC);
+}
+
+
+void CTestGdiplusbitmapDlg::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+	CDialogEx::OnWindowPosChanged(lpwndpos);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	SaveWindowPosition(&theApp, this);
+}
+
+
+void CTestGdiplusbitmapDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	Invalidate();
 }

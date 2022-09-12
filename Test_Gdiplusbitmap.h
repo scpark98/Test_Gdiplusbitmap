@@ -20,6 +20,8 @@ class CTestGdiplusbitmapApp : public CWinApp
 public:
 	CTestGdiplusbitmapApp();
 
+	ULONG_PTR	m_gdiplusToken;
+
 // 재정의입니다.
 public:
 	virtual BOOL InitInstance();
@@ -27,6 +29,7 @@ public:
 // 구현입니다.
 
 	DECLARE_MESSAGE_MAP()
+		virtual int ExitInstance();
 };
 
 extern CTestGdiplusbitmapApp theApp;

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../../Common/GdiPlusBitmap.h"
 
 // CTestGdiplusbitmapDlg 대화 상자
 class CTestGdiplusbitmapDlg : public CDialogEx
@@ -11,6 +12,10 @@ class CTestGdiplusbitmapDlg : public CDialogEx
 // 생성입니다.
 public:
 	CTestGdiplusbitmapDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
+
+	CGdiPlusBitmapResource m_img_back;
+	CGdiPlusBitmap m_copied;
+
 
 // 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
@@ -34,4 +39,7 @@ protected:
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };

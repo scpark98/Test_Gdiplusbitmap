@@ -36,6 +36,21 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Common\Functions.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\GdiPlusBitmap.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\ResizeCtrl.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\colors.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\MemoryDC.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test_Gdiplusbitmap.cpp">
@@ -46,6 +61,18 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\Functions.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\ResizeCtrl.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\colors.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\GdiPlusBitmap.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +87,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Test_Gdiplusbitmap.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\01.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\3_small.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\04.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\window.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
