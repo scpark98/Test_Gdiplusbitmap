@@ -111,7 +111,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_img_back.Load(IDB_WINDOW, _T("JPG"));
 	//m_img_back.clone(&m_copied);
 	//m_img_back.deep_copy(&m_copied);
-	m_cream.Load(IDB_CREAM, _T("PNG"));
+	m_cream.Load(IDB_NORMAL, _T("PNG"));
 	m_cream.save(_T("d:\\temp\\cream.jpg"));
 	m_cream.save(_T("d:\\temp\\cream.png"));
 	m_cream.deep_copy(&m_copied);
@@ -201,9 +201,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		DrawLine(&dc, 0, 0, rc.right, rc.bottom, red);
 		DrawLine(&dc, 0, rc.bottom, rc.right, 0, red);
 
-		DrawRectangle(&dc, m_r, blue);
-		DrawRectangle(&dc, m_rotated, violet);
-		draw_polygon(&dc, m_pts, true, lightgreen, 1);
+		//DrawRectangle(&dc, m_r, blue);
+		//DrawRectangle(&dc, m_rotated, violet);
+		//draw_polygon(&dc, m_pts, true, lightgreen, 1);
 		/*
 		g.DrawImage(m_file_image,
 			(int)(rc.Width() - m_file_image->GetWidth() - 20),
@@ -234,13 +234,15 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
 		*/
 		m_cream.deep_copy(&m_copied);
-		m_copied.rotate(degree);
+		m_copied.rotate(degree, true);
 		CString str;
 		str.Format(_T("d:\\temp\\%03d.png"), degree);
 		m_copied.save(str);
 		Invalidate();
-		Wait(150);
+		Wait(50);
 		degree += 1;
+		if (degree > 360)
+			break;
 	}
 }
 
