@@ -111,9 +111,9 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_img_back.Load(IDB_WINDOW, _T("JPG"));
 	//m_img_back.clone(&m_copied);
 	//m_img_back.deep_copy(&m_copied);
-	m_cream.Load(IDB_NORMAL, _T("PNG"));
-	m_cream.save(_T("d:\\temp\\cream.jpg"));
-	m_cream.save(_T("d:\\temp\\cream.png"));
+	m_cream.Load(IDB_APPLE, _T("PNG"));
+	//m_cream.save(_T("d:\\temp\\cream.jpg"));
+	//m_cream.save(_T("d:\\temp\\cream.png"));
 	m_cream.deep_copy(&m_copied);
 	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
 	//m_copied.set_transparent(0.5);
@@ -233,13 +233,14 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		m_rotated = m_r;
 		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
 		*/
+		m_copied.Empty();
 		m_cream.deep_copy(&m_copied);
 		m_copied.rotate(degree, true);
-		CString str;
-		str.Format(_T("d:\\temp\\%03d.png"), degree);
-		m_copied.save(str);
+		//CString str;
+		//str.Format(_T("d:\\temp\\%03d.png"), degree);
+		//m_copied.save(str);
 		Invalidate();
-		Wait(50);
+		Wait(10);
 		degree += 1;
 		if (degree > 360)
 			break;
