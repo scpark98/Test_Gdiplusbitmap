@@ -111,12 +111,24 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_img_back.Load(IDB_WINDOW, _T("JPG"));
 	//m_img_back.clone(&m_copied);
 	//m_img_back.deep_copy(&m_copied);
-	m_copied.Load(IDB_NORMAL, _T("PNG"));
+	m_cream.Load(IDB_CREAM, _T("PNG"));
+	m_cream.save(_T("d:\\temp\\cream.jpg"));
+	m_cream.save(_T("d:\\temp\\cream.png"));
+	m_cream.deep_copy(&m_copied);
 	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
-	m_copied.set_transparent(0.5);
-	m_copied.rotate(45);
+	//m_copied.set_transparent(0.5);
+	//m_copied.rotate(45);
 	//m_img_back.rotate(Gdiplus::Rotate90FlipY);
 
+	int cx = 0;
+	int cy = 100;
+	int tx = 100;
+	int ty = 100;
+	m_r = CRect(200, 200, 500, 300);
+	m_rotated = m_r;
+	get_rotated(cx, cy, &tx, &ty, -90);
+	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
+	//TRACE()
 
 	RestoreWindowPosition(&theApp, this);
 
@@ -179,15 +191,19 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
-		w = m_copied.m_pBitmap->GetWidth();
-		h = m_copied.m_pBitmap->GetHeight();
+		w = m_copied.width();
+		h = m_copied.height();
 
-		g.DrawImage(m_copied, rc.CenterPoint().x - w/2, rc.CenterPoint().y - h/2);
+		g.DrawImage(m_copied, rc.CenterPoint().x - w/2, rc.CenterPoint().y - h/2, w, h);
 		//ia.SetColorMatrix(&colorMatrix, ColorMatrixFlagsDefault, ColorAdjustTypeBitmap);
 		//g.DrawImage(m_copied, Rect(100, 100, m_copied.width(), m_copied.height()), 0, 0, w, h, UnitPixel, &ia);
 
 		DrawLine(&dc, 0, 0, rc.right, rc.bottom, red);
 		DrawLine(&dc, 0, rc.bottom, rc.right, 0, red);
+
+		DrawRectangle(&dc, m_r, blue);
+		DrawRectangle(&dc, m_rotated, violet);
+		draw_polygon(&dc, m_pts, true, lightgreen, 1);
 		/*
 		g.DrawImage(m_file_image,
 			(int)(rc.Width() - m_file_image->GetWidth() - 20),
@@ -209,12 +225,30 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
+	int degree = 0;
+
+	while (!m_closed)
+	{
+		/*
+		m_rotated = m_r;
+		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
+		*/
+		m_cream.deep_copy(&m_copied);
+		m_copied.rotate(degree);
+		CString str;
+		str.Format(_T("d:\\temp\\%03d.png"), degree);
+		m_copied.save(str);
+		Invalidate();
+		Wait(150);
+		degree += 1;
+	}
 }
 
 
 void CTestGdiplusbitmapDlg::OnBnClickedCancel()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	m_closed = true;
 	CDialogEx::OnCancel();
 }
 
@@ -242,4 +276,20 @@ void CTestGdiplusbitmapDlg::OnSize(UINT nType, int cx, int cy)
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	Invalidate();
+}
+
+
+BOOL CTestGdiplusbitmapDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
+	if (pMsg->message == WM_KEYDOWN)
+	{
+		switch (pMsg->wParam)
+		{
+		case VK_ESCAPE :
+			m_closed = true;
+			break;
+		}
+	}
+	return CDialogEx::PreTranslateMessage(pMsg);
 }

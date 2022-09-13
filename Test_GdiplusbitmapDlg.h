@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <vector>
 #include "../../Common/GdiPlusBitmap.h"
 
 // CTestGdiplusbitmapDlg 대화 상자
@@ -13,8 +14,14 @@ class CTestGdiplusbitmapDlg : public CDialogEx
 public:
 	CTestGdiplusbitmapDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
 
+	CRect m_r;
+	CRect m_rotated;
+	std::vector<CPoint> m_pts;
 	CGdiPlusBitmapResource m_img_back;
+	CGdiPlusBitmapResource m_cream;
 	CGdiPlusBitmapResource m_copied;
+
+	bool m_closed = false;
 
 
 // 대화 상자 데이터입니다.
@@ -42,4 +49,5 @@ public:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 };
