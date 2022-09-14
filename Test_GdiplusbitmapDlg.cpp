@@ -109,12 +109,12 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	m_img_back.Load(IDB_WINDOW, _T("JPG"));
-	//m_img_back.clone(&m_copied);
+	m_img_back.clone(&m_cream);
 	//m_img_back.deep_copy(&m_copied);
 	m_cream.Load(IDB_APPLE, _T("PNG"));
 	//m_cream.save(_T("d:\\temp\\cream.jpg"));
 	//m_cream.save(_T("d:\\temp\\cream.png"));
-	m_cream.deep_copy(&m_copied);
+	m_cream.clone(&m_copied);
 	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
 	//m_copied.set_transparent(0.5);
 	//m_copied.rotate(45);
@@ -233,17 +233,23 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		m_rotated = m_r;
 		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
 		*/
-		m_copied.Empty();
-		m_cream.deep_copy(&m_copied);
-		m_copied.rotate(degree, true);
+		long t0 = clock();
+		//m_cream.deep_copy(&m_copied);
+		m_cream.clone(&m_copied);
+		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
+		t0 = clock();
+		m_copied.rotate(degree, false);
+		TRACE(_T("rotate = %ld ms\n"), clock() - t0);
 		//CString str;
 		//str.Format(_T("d:\\temp\\%03d.png"), degree);
 		//m_copied.save(str);
+		t0 = clock();
 		Invalidate();
+		TRACE(_T("Invalidate = %ld ms\n"), clock() - t0);
 		Wait(10);
 		degree += 1;
 		if (degree > 360)
-			break;
+			degree = 0;
 	}
 }
 
