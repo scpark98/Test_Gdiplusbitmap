@@ -114,7 +114,9 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_cream.Load(IDB_APPLE, _T("PNG"));
 	//m_cream.save(_T("d:\\temp\\cream.jpg"));
 	//m_cream.save(_T("d:\\temp\\cream.png"));
-	m_cream.clone(&m_copied);
+	//m_cream.set_transparent(0.5f);
+	m_cream.negative();
+	m_cream.deep_copy(&m_copied);
 	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
 	//m_copied.set_transparent(0.5);
 	//m_copied.rotate(45);
@@ -226,6 +228,7 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
 	int degree = 0;
+	float trans = 1.0;
 
 	while (!m_closed)
 	{
@@ -237,19 +240,27 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		//m_cream.deep_copy(&m_copied);
 		m_cream.clone(&m_copied);
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
+
 		t0 = clock();
-		m_copied.rotate(degree, false);
-		TRACE(_T("rotate = %ld ms\n"), clock() - t0);
+		//m_copied.rotate(degree, false);
+		m_copied.set_transparent(trans);
+		//TRACE(_T("rotate = %ld ms\n"), clock() - t0);
+		TRACE(_T("set_transparent(%f) = %ld ms\n"), trans, clock() - t0);
+
 		//CString str;
 		//str.Format(_T("d:\\temp\\%03d.png"), degree);
 		//m_copied.save(str);
 		t0 = clock();
 		Invalidate();
 		TRACE(_T("Invalidate = %ld ms\n"), clock() - t0);
-		Wait(10);
+		Wait(50);
 		degree += 1;
 		if (degree > 360)
 			degree = 0;
+
+		trans -= 0.05;
+		if (trans < 0)
+			trans = 1.0;
 	}
 }
 
