@@ -108,15 +108,16 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	m_img_back.Load(IDB_WINDOW, _T("JPG"));
+	//m_img_back.Load(IDB_WINDOW, _T("JPG"));
+	m_img_back.Load(GetExeDirectory() + _T("\\window.jpg"));
 	m_img_back.clone(&m_cream);
 	//m_img_back.deep_copy(&m_copied);
 	m_cream.Load(IDB_APPLE, _T("PNG"));
 	//m_cream.save(_T("d:\\temp\\cream.jpg"));
 	//m_cream.save(_T("d:\\temp\\cream.png"));
-	//m_cream.set_transparent(0.5f);
-	m_cream.negative();
-	m_cream.deep_copy(&m_copied);
+	m_cream.set_transparent(0.5f);
+	//m_cream.negative();
+	m_cream.clone(&m_copied);
 	//m_copied.set_colorkey(Color(255, 255, 255, 255), Color(255, 255, 255, 255));
 	//m_copied.set_transparent(0.5);
 	//m_copied.rotate(45);
@@ -193,14 +194,14 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
-		w = m_copied.width();
-		h = m_copied.height();
+		w = m_copied.width;
+		h = m_copied.height;
 
 		g.DrawImage(m_copied, rc.CenterPoint().x - w/2, rc.CenterPoint().y - h/2, w, h);
 		//ia.SetColorMatrix(&colorMatrix, ColorMatrixFlagsDefault, ColorAdjustTypeBitmap);
 		//g.DrawImage(m_copied, Rect(100, 100, m_copied.width(), m_copied.height()), 0, 0, w, h, UnitPixel, &ia);
 
-		DrawLine(&dc, 0, 0, rc.right, rc.bottom, red);
+		DrawLine(&dc, (int)0, (int)0, (int)(rc.right), (int)(rc.bottom), red);
 		DrawLine(&dc, 0, rc.bottom, rc.right, 0, red);
 
 		//DrawRectangle(&dc, m_r, blue);
@@ -232,6 +233,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 
 	while (!m_closed)
 	{
+		m_img_back.Load(GetExeDirectory() + _T("\\window.jpg"));
 		/*
 		m_rotated = m_r;
 		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
@@ -242,10 +244,10 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
 
 		t0 = clock();
-		//m_copied.rotate(degree, false);
-		m_copied.set_transparent(trans);
+		m_copied.rotate(degree, true);
+		//m_copied.set_transparent(trans);
 		//TRACE(_T("rotate = %ld ms\n"), clock() - t0);
-		TRACE(_T("set_transparent(%f) = %ld ms\n"), trans, clock() - t0);
+		TRACE(_T("rotate(%f) = %ld ms\n"), trans, clock() - t0);
 
 		//CString str;
 		//str.Format(_T("d:\\temp\\%03d.png"), degree);
@@ -253,7 +255,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		t0 = clock();
 		Invalidate();
 		TRACE(_T("Invalidate = %ld ms\n"), clock() - t0);
-		Wait(50);
+		Wait(10);
 		degree += 1;
 		if (degree > 360)
 			degree = 0;
