@@ -39,7 +39,7 @@
     <ClInclude Include="..\..\Common\Functions.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Common\GdiPlusBitmap.h">
+    <ClInclude Include="..\..\Common\GdiplusBitmap.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\ResizeCtrl.h">
@@ -71,7 +71,7 @@
     <ClCompile Include="..\..\Common\colors.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\GdiPlusBitmap.cpp">
+    <ClCompile Include="..\..\Common\GdiplusBitmap.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>

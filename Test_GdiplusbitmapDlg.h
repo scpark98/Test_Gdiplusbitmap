@@ -5,7 +5,7 @@
 #pragma once
 
 #include <vector>
-#include "../../Common/GdiPlusBitmap.h"
+#include "../../Common/GdiplusBitmap.h"
 
 // CTestGdiplusbitmapDlg 대화 상자
 class CTestGdiplusbitmapDlg : public CDialogEx
@@ -17,9 +17,9 @@ public:
 	CRect m_r;
 	CRect m_rotated;
 	std::vector<CPoint> m_pts;
-	CGdiPlusBitmap m_img_back;
-	CGdiPlusBitmapResource m_cream;
-	CGdiPlusBitmapResource m_copied;
+	CGdiplusBitmap m_img_back;
+	CGdiplusBitmap m_cream;
+	CGdiplusBitmap m_copied;
 
 	bool m_closed = false;
 
