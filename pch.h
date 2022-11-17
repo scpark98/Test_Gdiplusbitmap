@@ -19,5 +19,4 @@
 #include <gdiplus.h>
 using namespace Gdiplus;
 
-
 #endif //PCH_H

@@ -108,12 +108,12 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	m_img_back.load(IDB_WINDOW, _T("JPG"));
-	//m_img_back.Load(GetExeDirectory() + _T("\\window.jpg"));
-	m_img_back.clone(&m_cream);
+	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	m_img_back.load(_T("D:\\window.jpg"));
+	//m_img_back.clone(&m_cream);
 	//m_img_back.deep_copy(&m_copied);
 
-	m_cream.load(IDB_CREAM, _T("PNG"));
+	m_cream.load(_T("PNG"), (UINT)IDB_CREAM);
 	//m_cream.Load(_T("d:\\temp\\result.jpg"));
 	//m_cream.save(_T("d:\\temp\\cream_before.png"));
 	//m_cream.resize(180, 99);
@@ -244,7 +244,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		*/
 		long t0 = clock();
 		//m_cream.deep_copy(&m_copied);
-		m_copied.load(IDB_APPLE, _T("PNG"));// .deep_copy(&m_copied);
+		m_copied.load(_T("PNG"), (UINT)IDB_APPLE);// .deep_copy(&m_copied);
 		m_copied.set_transparent(trans);
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
 
