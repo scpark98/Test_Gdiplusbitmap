@@ -109,7 +109,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_back.load(GetExeDirectory() + _T("\\window.jpg"));
+	m_img_back.load(_T("d:\\window.jpg"));
 	//m_img_back.clone(&m_cream);
 	//m_img_back.deep_copy(&m_copied);
 
