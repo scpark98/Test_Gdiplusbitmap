@@ -73,6 +73,7 @@ BEGIN_MESSAGE_MAP(CTestGdiplusbitmapDlg, CDialogEx)
 	ON_WM_ERASEBKGND()
 	ON_WM_WINDOWPOSCHANGED()
 	ON_WM_SIZE()
+	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
 
@@ -108,8 +109,10 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_back.load(GetExeDirectory() + _T("\\window.jpg"));
+	DragAcceptFiles();
+	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	/*
+	m_img_back.load(_T("d:\\window.jpg"));
 	//m_img_back.clone(&m_cream);
 	//m_img_back.deep_copy(&m_copied);
 
@@ -136,6 +139,14 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	get_rotated(cx, cy, &tx, &ty, -90);
 	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
 	//TRACE()
+	*/
+	m_gif.load(_T("c:\\scpark\\media\\test_image\\01.gif"));
+	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
+	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
+	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
+	m_gif.set_animation(m_hWnd, 50, 100);// , 500, 400);// , 150, 130);
+
+	//m_gif.save(_T("D:\\media\\test_image\\saved.gif"));
 
 	RestoreWindowPosition(&theApp, this);
 
@@ -232,6 +243,25 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
+	//m_gif.load(_T("D:\\media\\test_image\\01.gif"));
+	//m_gif.set_animation(m_hWnd);// , 0, 0, 150, 130);
+
+	std::vector<CGdiplusBitmap*> dqImage;
+	std::vector<long> dqDelay;
+	m_gif.get_gif_frames(dqImage, dqDelay);
+
+	for (int i = 0; i < dqImage.size(); i++)
+	{
+		dqImage[i]->save(_T("d:\\temp\\01_") + i2S(i, false, true, 3) + _T(".png"));
+		TRACE(_T("delay[%0d] = %d\n"), i, dqDelay[i]);
+		dqImage[i]->release();
+		delete dqImage[i];
+	}
+
+
+
+	return;
+
 	int degree = 0;
 	float trans = 1.0;
 
@@ -316,7 +346,30 @@ BOOL CTestGdiplusbitmapDlg::PreTranslateMessage(MSG* pMsg)
 		case VK_ESCAPE :
 			m_closed = true;
 			break;
+		case VK_SPACE :
+			if (m_gif.valid())
+				m_gif.pause_animation();
+			break;
+		case 'S' :
+			if (IsCtrlPressed())
+			{
+				m_gif.save_gif_frames(_T("d:\\temp"));
+			}
+			break;
 		}
 	}
 	return CDialogEx::PreTranslateMessage(pMsg);
+}
+
+
+void CTestGdiplusbitmapDlg::OnDropFiles(HDROP hDropInfo)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	TCHAR sfile[MAX_PATH];
+
+	DragQueryFile(hDropInfo, 0, sfile, MAX_PATH);
+	m_gif.load(sfile);
+	m_gif.set_animation(m_hWnd);
+
+	CDialogEx::OnDropFiles(hDropInfo);
 }

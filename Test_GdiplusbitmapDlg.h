@@ -20,6 +20,7 @@ public:
 	CGdiplusBitmap m_img_back;
 	CGdiplusBitmap m_cream;
 	CGdiplusBitmap m_copied;
+	CGdiplusBitmap m_gif;
 
 	bool m_closed = false;
 
@@ -50,4 +51,5 @@ public:
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnDropFiles(HDROP hDropInfo);
 };

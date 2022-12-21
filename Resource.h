@@ -15,12 +15,17 @@
 #define IDB_DISABLED                    134
 #define IDB_DOWN                        135
 #define IDB_OVER                        136
+#define IDR_GIF_01                      138
+#define IDR_GIF2                        139
+#define IDR_GIF_CAT_LOADING             139
+#define IDR_GIF1                        140
+#define IDR_GIF_PROCESSING_COLOR_BALL   140
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        138
+#define _APS_NEXT_RESOURCE_VALUE        141
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

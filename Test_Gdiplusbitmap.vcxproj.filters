@@ -84,6 +84,15 @@
     <None Include="res\TestGdiplusbitmap.rc2">
       <Filter>리소스 파일</Filter>
     </None>
+    <None Include="res\01.bin">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="..\..\..\media\test_image\cat-loading.bin">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="res\processing_color_ball.bin">
+      <Filter>리소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Test_Gdiplusbitmap.ico">
