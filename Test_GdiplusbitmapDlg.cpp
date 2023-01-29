@@ -110,7 +110,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	DragAcceptFiles();
-	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	m_img_back.load(_T("d:\\media\\test_image\\window1.jpg"));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
 	//m_img_back.clone(&m_cream);
@@ -140,13 +141,10 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
 	//TRACE()
 	*/
-	m_gif.load(_T("d:\\media\\test_image\\01.gif"));
-	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
-	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
-	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
-	//m_gif.save(_T("D:\\media\\test_image\\saved.gif"));
+	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
+	//m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
+	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
 	RestoreWindowPosition(&theApp, this);
 
@@ -206,7 +204,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 
 		//dc.FillSolidRect(rc, m_crBack);
 		//g.DrawImage(m_img_back, Rect(0, 0, rc.Width(), rc.Height()), 0, 0, w, h, UnitPixel, &ia);
-		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
+		//g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
+		//m_img_back.draw(&dc, m_img_back, rc);
+		m_img_back.draw(&dc, rc);
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
 		w = m_copied.width;
