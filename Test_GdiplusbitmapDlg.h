@@ -18,7 +18,7 @@ public:
 	CRect m_rotated;
 	std::vector<CPoint> m_pts;
 	CGdiplusBitmap m_img_back;
-	CGdiplusBitmap m_cream;
+	CGdiplusBitmap m_img_cream;
 	CGdiplusBitmap m_copied;
 	CGdiplusBitmap m_gif;
 

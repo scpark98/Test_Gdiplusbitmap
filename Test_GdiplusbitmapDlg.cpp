@@ -111,6 +111,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 	DragAcceptFiles();
 	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\Check_Normal.png"));
+	m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
 	//m_img_back.clone(&m_cream);
@@ -144,7 +146,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
 	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	m_gif.set_animation(m_hWnd, 50, 100);// , 500, 400);// , 150, 130);
+	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
 	//m_gif.save(_T("D:\\media\\test_image\\saved.gif"));
 
@@ -208,6 +210,8 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		//g.DrawImage(m_img_back, Rect(0, 0, rc.Width(), rc.Height()), 0, 0, w, h, UnitPixel, &ia);
 		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
+
+		m_img_cream.draw(&dc, 300, 200);
 
 		w = m_copied.width;
 		h = m_copied.height;
@@ -275,7 +279,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		long t0 = clock();
 		//m_cream.deep_copy(&m_copied);
 		m_copied.load(_T("PNG"), (UINT)IDB_APPLE);// .deep_copy(&m_copied);
-		m_copied.set_transparent(trans);
+		m_copied.set_alpha(trans);
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
 
 		t0 = clock();
