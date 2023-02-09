@@ -146,9 +146,11 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
 	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
+	m_gif.set_animation(m_hWnd, 50, 100);// , 500, 400);// , 150, 130);
 
-	//m_gif.save(_T("D:\\media\\test_image\\saved.gif"));
+	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
+	//m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
+	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
 	RestoreWindowPosition(&theApp, this);
 
@@ -208,7 +210,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 
 		//dc.FillSolidRect(rc, m_crBack);
 		//g.DrawImage(m_img_back, Rect(0, 0, rc.Width(), rc.Height()), 0, 0, w, h, UnitPixel, &ia);
-		g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
+		//g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
+		//m_img_back.draw(&dc, m_img_back, rc);
+		m_img_back.draw(&dc, rc);
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
 		m_img_cream.draw(&dc, 300, 200);
@@ -262,12 +266,10 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		delete dqImage[i];
 	}
 
-
-
 	return;
 
 	int degree = 0;
-	float trans = 1.0;
+	float alpha = 1.0;
 
 	while (!m_closed)
 	{
@@ -279,7 +281,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		long t0 = clock();
 		//m_cream.deep_copy(&m_copied);
 		m_copied.load(_T("PNG"), (UINT)IDB_APPLE);// .deep_copy(&m_copied);
-		m_copied.set_alpha(trans);
+		m_copied.set_transparent(trans);
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
 
 		t0 = clock();
@@ -299,9 +301,9 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		if (degree > 360)
 			degree = 0;
 
-		trans -= 0.01;
-		if (trans < 0)
-			trans = 1.0;
+		alpha -= 0.01;
+		if (alpha < 0)
+			alpha = 1.0;
 	}
 }
 
