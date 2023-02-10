@@ -109,10 +109,13 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	m_aniGifDlg.Create(IDD_ANIGIF, this);
+	m_aniGifDlg.ShowWindow(SW_SHOW);
+
 	DragAcceptFiles();
 	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\Check_Normal.png"));
-	m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
+	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\pngegg.png"));
+	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
 	//m_img_back.clone(&m_cream);
@@ -146,7 +149,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
 	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	m_gif.set_animation(m_hWnd, 50, 100);// , 500, 400);// , 150, 130);
+	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
 	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
 	//m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
@@ -281,7 +284,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		long t0 = clock();
 		//m_cream.deep_copy(&m_copied);
 		m_copied.load(_T("PNG"), (UINT)IDB_APPLE);// .deep_copy(&m_copied);
-		m_copied.set_transparent(trans);
+		m_copied.set_alpha(alpha);
 		TRACE(_T("clone  = %ld ms\n"), clock() - t0);
 
 		t0 = clock();
@@ -374,8 +377,10 @@ void CTestGdiplusbitmapDlg::OnDropFiles(HDROP hDropInfo)
 	TCHAR sfile[MAX_PATH];
 
 	DragQueryFile(hDropInfo, 0, sfile, MAX_PATH);
-	m_gif.load(sfile);
-	m_gif.set_animation(m_hWnd);
+	//m_gif.load(sfile);
+	//m_gif.set_animation(m_hWnd);
+	m_img_cream.load(sfile);
+	Invalidate();
 
 	CDialogEx::OnDropFiles(hDropInfo);
 }
