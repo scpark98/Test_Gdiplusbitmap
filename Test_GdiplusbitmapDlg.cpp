@@ -109,12 +109,14 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
-	m_aniGifDlg.Create(IDD_ANIGIF, this);
-	m_aniGifDlg.ShowWindow(SW_SHOW);
+	//m_aniGifDlg.Create(IDD_ANIGIF, this);
+	//m_aniGifDlg.ShowWindow(SW_SHOW);
 
 	DragAcceptFiles();
-	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\pngegg.png"));
+	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	m_img_back.load(_T("s:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	m_img_back.convert2gray();
+	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\icecream.png"));
 	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
@@ -147,7 +149,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	*/
 	m_gif.load(_T("c:\\scpark\\media\\test_image\\01.gif"));
 	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
-	m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
+	m_gif.back_color(Gdiplus::Color(0, 255, 128, 128));
+	m_gif.apply_effect_hsl(100);
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
 	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 
@@ -240,6 +243,8 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetWidth(),
 			m_file_image->GetHeight());
 		*/
+
+		draw_outline_text(&dc, 300, 300, _T("text 한글"), 90, 4, Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255));
 	}
 }
 
@@ -251,32 +256,15 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 }
 
 
-
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
-	//m_gif.load(_T("D:\\media\\test_image\\01.gif"));
-	//m_gif.set_animation(m_hWnd);// , 0, 0, 150, 130);
-
-	std::vector<CGdiplusBitmap*> dqImage;
-	std::vector<long> dqDelay;
-	m_gif.get_gif_frames(dqImage, dqDelay);
-
-	for (int i = 0; i < dqImage.size(); i++)
-	{
-		dqImage[i]->save(_T("d:\\temp\\01_") + i2S(i, false, true, 3) + _T(".png"));
-		TRACE(_T("delay[%0d] = %d\n"), i, dqDelay[i]);
-		dqImage[i]->release();
-		delete dqImage[i];
-	}
-
-	return;
-
 	int degree = 0;
 	float alpha = 1.0;
 
+	m_img_back.load(_T("s:\\내 드라이브\\media\\test_image\\window.jpg"));
+
 	while (!m_closed)
 	{
-		m_img_back.load(GetExeDirectory() + _T("\\window.jpg"));
 		/*
 		m_rotated = m_r;
 		m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, degree);
@@ -297,7 +285,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 		//str.Format(_T("d:\\temp\\%03d.png"), degree);
 		//m_copied.save(str);
 		t0 = clock();
-		Invalidate();
+		InvalidateRect(CRect(200, 200, 600, 600));
 		TRACE(_T("Invalidate = %ld ms\n"), clock() - t0);
 		Wait(10);
 		degree += 1;
