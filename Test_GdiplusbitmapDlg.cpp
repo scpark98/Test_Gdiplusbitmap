@@ -114,9 +114,9 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	DragAcceptFiles();
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_back.load(_T("s:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	m_img_back.convert2gray();
-	m_img_cream.load(_T("c:\\scpark\\media\\test_image\\icecream.png"));
+	m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
 	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
@@ -147,7 +147,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
 	//TRACE()
 	*/
-	m_gif.load(_T("c:\\scpark\\media\\test_image\\01.gif"));
+	m_gif.load(_T("z:\\내 드라이브\\media\\test_image\\01.gif"));
 	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
 	m_gif.back_color(Gdiplus::Color(0, 255, 128, 128));
 	m_gif.apply_effect_hsl(100);
@@ -244,7 +244,7 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
-		draw_outline_text(&dc, 300, 300, _T("text 한글"), 90, 4, Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255));
+		draw_outline_text(&dc, 300, 300, _T("text 한글"), 90, 4, _T("맑은 고딕"), Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255));
 	}
 }
 
@@ -261,7 +261,7 @@ void CTestGdiplusbitmapDlg::OnBnClickedOk()
 	int degree = 0;
 	float alpha = 1.0;
 
-	m_img_back.load(_T("s:\\내 드라이브\\media\\test_image\\window.jpg"));
+	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window.jpg"));
 
 	while (!m_closed)
 	{
