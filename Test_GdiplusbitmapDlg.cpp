@@ -116,7 +116,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
 	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.convert2gray();
-	m_img_back.draw_text(300, 50, _T("text 한글 in image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
+	m_img_back.draw_text(300, 50, _T("text 한글 on image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
 
 	m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
 	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
