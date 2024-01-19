@@ -246,7 +246,15 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
-		draw_outline_text(&dc, 300, 300, _T("text 한글"), 90, 4, _T("맑은 고딕"), Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255));
+		//pink outline, blue filled text
+		draw_gdip_outline_text(&dc, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
+			Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255),
+			DT_CENTER | DT_VCENTER);
+
+		//white 글씨의 blue shadow
+		draw_gdip_shadow_text(&dc, rc, _T("draw_gdip_shadow_text() DT_BOTTOM"), 40, 4, _T("맑은 고딕"),
+			Gdiplus::Color(128, 255, 255, 255), Gdiplus::Color(128, 0, 0, 255),
+			DT_CENTER | DT_BOTTOM);
 	}
 }
 
@@ -349,7 +357,7 @@ BOOL CTestGdiplusbitmapDlg::PreTranslateMessage(MSG* pMsg)
 			m_closed = true;
 			break;
 		case VK_SPACE :
-			if (m_gif.valid())
+			if (m_gif.is_valid())
 				m_gif.pause_animation();
 			break;
 		case 'S' :

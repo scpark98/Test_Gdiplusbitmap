@@ -84,7 +84,7 @@ void CAniGifDlg::OnBnClickedCancel()
 
 void CAniGifDlg::render(void)
 {
-	if (!IsWindow(m_hWnd) || m_img.empty())
+	if (!IsWindow(m_hWnd) || m_img.is_empty())
 		return;
 
 	int width = m_img.width;
