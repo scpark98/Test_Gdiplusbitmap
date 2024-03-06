@@ -115,10 +115,13 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	DragAcceptFiles();
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
 	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	m_img_back.round_corner(40, 0.0F, 0.0F, false);
 	//m_img_back.convert2gray();
-	m_img_back.draw_text(300, 50, _T("text 한글 on image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
+	//m_img_back.draw_text(300, 50, _T("text 한글 on image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
 
-	m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
+	//m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
+	//m_img_cream.sub_image(Gdiplus::Rect(0, 0, m_img_cream.width / 2, m_img_cream.height / 2));
+	//m_img_cream.save(_T("d:\\test.png"));
 	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
 	/*
 	m_img_back.load(_T("d:\\window.jpg"));
@@ -220,10 +223,10 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		//g.DrawImage(m_img_back, Rect(0, 0, rc.Width(), rc.Height()), 0, 0, w, h, UnitPixel, &ia);
 		//g.DrawImage(m_img_back, 0, 0, rc.Width(), rc.Height());
 		//m_img_back.draw(&dc, m_img_back, rc);
-		m_img_back.draw(&g, rc);
+		m_img_back.draw(g, rc);
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
-		m_img_cream.draw(&g, 300, 200);
+		m_img_cream.draw(g, 300, 200);
 
 		w = m_copied.width;
 		h = m_copied.height;
