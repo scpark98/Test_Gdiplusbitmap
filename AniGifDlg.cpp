@@ -44,7 +44,7 @@ BOOL CAniGifDlg::OnInitDialog()
 	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 	m_img.load(_T("c:\\scpark\\media\\test_image\\24.gif"));
 	//m_img.back_color(Gdiplus::Color::Transparent);
-	m_img.set_animation(m_hWnd);
+	m_img.set_animation(m_hWnd, 100, 100);
 	render();
 
 	SetTimer(timer_animate, 100, NULL);

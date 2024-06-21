@@ -112,6 +112,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_aniGifDlg.Create(IDD_ANIGIF, this);
 	//m_aniGifDlg.ShowWindow(SW_SHOW);
 
+	RestoreWindowPosition(&theApp, this);
+
 	DragAcceptFiles();
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
 	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
@@ -152,18 +154,21 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
 	//TRACE()
 	*/
-	m_gif.load(_T("z:\\내 드라이브\\media\\test_image\\01.gif"));
-	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
-	m_gif.back_color(Gdiplus::Color(255, 255, 255, 255));
+	//m_gif.load(_T("z:\\내 드라이브\\media\\test_image\\01.gif"));
+	m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
+	//m_gif.back_color(Gdiplus::Color(255, 255, 255, 255));
 	//m_gif.apply_effect_hsl(100);
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
+	CRect rc;
+	GetClientRect(rc);
+	//m_gif.set_animation(m_hWnd, rc, true);
 
 	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
 	//m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
 	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
-
-	RestoreWindowPosition(&theApp, this);
+	//bool result = kill_service(_T("RCClientService"));
+	bool result = kill_service(_T("RCClientService"), _T("RCClient.exe"));
+	AfxMessageBox(result ? _T("ok") : _T("fail"));
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -250,12 +255,13 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		*/
 
 		//pink outline, blue filled text
-		draw_gdip_outline_text(&dc, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
+		draw_gdip_outline_text(&g, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
 			Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255),
 			DT_CENTER | DT_VCENTER);
 
 		//white 글씨의 blue shadow
-		draw_gdip_shadow_text(&dc, rc, _T("draw_gdip_shadow_text() DT_BOTTOM"), 40, 4, _T("맑은 고딕"),
+		draw_gdip_shadow_text(&g, rc, _T("draw_gdip_shadow_text() DT_BOTTOM"),
+			40, true, 4, _T("맑은 고딕"),
 			Gdiplus::Color(128, 255, 255, 255), Gdiplus::Color(128, 0, 0, 255),
 			DT_CENTER | DT_BOTTOM);
 	}
@@ -271,7 +277,8 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
-	m_gif.stop_animation();
+	m_gif.pause_animation(0);
+	//m_gif.goto_frame_percent(50);
 	return;
 
 	int degree = 0;
@@ -345,6 +352,10 @@ void CTestGdiplusbitmapDlg::OnSize(UINT nType, int cx, int cy)
 	CDialogEx::OnSize(nType, cx, cy);
 
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	CRect rc;
+	GetClientRect(rc);
+	m_gif.move(rc);
+
 	Invalidate();
 }
 
