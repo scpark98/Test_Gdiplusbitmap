@@ -99,6 +99,9 @@
     <None Include="res\processing_color_ball.bin">
       <Filter>리소스 파일</Filter>
     </None>
+    <None Include="..\Test_SCShapeDlg\res\images\loading_box.bin">
+      <Filter>리소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Test_Gdiplusbitmap.ico">

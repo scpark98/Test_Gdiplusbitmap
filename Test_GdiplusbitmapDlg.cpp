@@ -116,8 +116,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	DragAcceptFiles();
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
-	m_img_back.round_corner(40, 0.0F, 0.0F, false);
+	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
 	//m_img_back.convert2gray();
 	//m_img_back.draw_text(300, 50, _T("text 한글 on image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
 
@@ -154,21 +154,22 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_pts = get_rotated(m_r.CenterPoint().x, m_r.CenterPoint().y, &m_rotated, 25);
 	//TRACE()
 	*/
-	//m_gif.load(_T("z:\\내 드라이브\\media\\test_image\\01.gif"));
-	m_gif.load(_T("GIF"), (UINT)IDR_GIF_PROCESSING_COLOR_BALL);
+
+	//m_gif.load(_T("D:\\1.Projects_C++\\LMM_KDAX\\LmmCSManager\\PcAnyManager\\res\\loading_box.gif"));
+	//m_gif.load(_T("GIF"), (UINT)IDR_LOADING_BOX);
+	//m_gif.load(_T("GIF"), (UINT)IDR_GIF_01);
 	//m_gif.back_color(Gdiplus::Color(255, 255, 255, 255));
 	//m_gif.apply_effect_hsl(100);
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
-	CRect rc;
-	GetClientRect(rc);
+
+	//CRect rc;
+	//GetClientRect(rc);
 	//m_gif.set_animation(m_hWnd, rc, true);
 
 	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
 	//m_gif.back_color(Gdiplus::Color(255, 255, 128, 128));
 	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 	//bool result = kill_service(_T("RCClientService"));
-	bool result = kill_service(_T("RCClientService"), _T("RCClient.exe"));
-	AfxMessageBox(result ? _T("ok") : _T("fail"));
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -240,8 +241,8 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		//ia.SetColorMatrix(&colorMatrix, ColorMatrixFlagsDefault, ColorAdjustTypeBitmap);
 		//g.DrawImage(m_copied, Rect(100, 100, m_copied.width(), m_copied.height()), 0, 0, w, h, UnitPixel, &ia);
 
-		DrawLine(&dc, (int)0, (int)0, (int)(rc.right), (int)(rc.bottom), red);
-		DrawLine(&dc, 0, rc.bottom, rc.right, 0, red);
+		draw_line(&dc, (int)0, (int)0, (int)(rc.right), (int)(rc.bottom), red);
+		draw_line(&dc, 0, rc.bottom, rc.right, 0, red);
 
 		//DrawRectangle(&dc, m_r, blue);
 		//DrawRectangle(&dc, m_rotated, violet);
@@ -254,8 +255,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
+		/*
 		//pink outline, blue filled text
-		draw_gdip_outline_text(&g, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
+		draw_text(&g, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
 			Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255),
 			DT_CENTER | DT_VCENTER);
 
@@ -264,6 +266,7 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			40, true, 4, _T("맑은 고딕"),
 			Gdiplus::Color(128, 255, 255, 255), Gdiplus::Color(128, 0, 0, 255),
 			DT_CENTER | DT_BOTTOM);
+			*/
 	}
 }
 
