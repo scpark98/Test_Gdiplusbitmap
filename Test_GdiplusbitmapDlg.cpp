@@ -120,7 +120,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	GetClientRect(rc);
 
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	//m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
+	m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
 	//m_img_back.apply_effect_blur(10, true);
 	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
@@ -267,7 +267,7 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
-		draw_text(&g, rc, _T("123 한글 on image"), 140.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 14.0F, _T("맑은 고딕"),
+		draw_text(g, rc, _T("123 한글 on image"), 140.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 8.0F, _T("맑은 고딕"),
 			Gdiplus::Color::Yellow,
 			Gdiplus::Color::Red,
 			Gdiplus::Color::Blue,
