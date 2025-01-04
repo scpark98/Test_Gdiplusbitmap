@@ -22,13 +22,14 @@
 #define IDR_GIF_PROCESSING_COLOR_BALL   140
 #define IDD_ANIGIF                      141
 #define IDR_GIF3                        143
-#define IDR_LOADING_BOX                 143
+#define IDR_JPG1                        144
+#define IDR_JPG_KWON                    144
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        144
+#define _APS_NEXT_RESOURCE_VALUE        145
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

@@ -115,11 +115,25 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	RestoreWindowPosition(&theApp, this);
 
 	DragAcceptFiles();
+
+	CRect rc;
+	GetClientRect(rc);
+
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	//m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
+	//m_img_back.apply_effect_blur(10, true);
 	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
 	//m_img_back.convert2gray();
-	//m_img_back.draw_text(300, 50, _T("text 한글 on image"), 20, 4, _T("맑은 고딕"), Gdiplus::Color(0, 255, 128, 128));// , Gdiplus::Color(128, 0, 0, 255), DT_LEFT | DT_TOP);
+	// 
+	//m_img_back.draw_text(CRect(), _T("123 한글 on image"), 40.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 4.0F, _T("맑은 고딕"),
+	//	Gdiplus::Color::Yellow,
+	//	Gdiplus::Color::Red,
+	//	Gdiplus::Color::Blue,
+	//	Gdiplus::Color::Transparent,
+	//	DT_CENTER | DT_VCENTER);
+	// 
+	//draw_text(m_img_back.get_graphics(), CRect(0, 0, m_img_back.width, m_img_back.height), _T("text 한글 on image"), 70);
 
 	//m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
 	//m_img_cream.sub_image(Gdiplus::Rect(0, 0, m_img_cream.width / 2, m_img_cream.height / 2));
@@ -162,8 +176,6 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.apply_effect_hsl(100);
 	//m_gif.load(_T("GIF"), UINT(IDR_GIF_CAT_LOADING));
 
-	//CRect rc;
-	//GetClientRect(rc);
 	//m_gif.set_animation(m_hWnd, rc, true);
 
 	//m_gif.load(_T("d:\\media\\test_image\\01.gif"));
@@ -255,18 +267,12 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
-		/*
-		//pink outline, blue filled text
-		draw_text(&g, rc, _T("draw_gdip_outline_text() DT_VCENTER"), 40, 4, _T("맑은 고딕"),
-			Gdiplus::Color(128, 255, 128, 128), Gdiplus::Color(128, 0, 0, 255),
-			DT_CENTER | DT_VCENTER);
-
-		//white 글씨의 blue shadow
-		draw_gdip_shadow_text(&g, rc, _T("draw_gdip_shadow_text() DT_BOTTOM"),
-			40, true, 4, _T("맑은 고딕"),
-			Gdiplus::Color(128, 255, 255, 255), Gdiplus::Color(128, 0, 0, 255),
+		draw_text(&g, rc, _T("123 한글 on image"), 140.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 14.0F, _T("맑은 고딕"),
+			Gdiplus::Color::Yellow,
+			Gdiplus::Color::Red,
+			Gdiplus::Color::Blue,
+			Gdiplus::Color::Transparent,
 			DT_CENTER | DT_BOTTOM);
-			*/
 	}
 }
 

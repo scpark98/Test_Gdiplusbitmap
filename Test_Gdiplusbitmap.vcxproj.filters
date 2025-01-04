@@ -54,6 +54,9 @@
     <ClInclude Include="AniGifDlg.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Common\system\ShellImageList\ShellImageList.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test_Gdiplusbitmap.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="AniGifDlg.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\system\ShellImageList\ShellImageList.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +132,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
     <Image Include="res\btn72_normal.png">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\권나라.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
