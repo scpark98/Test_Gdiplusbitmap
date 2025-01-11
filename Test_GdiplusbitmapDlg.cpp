@@ -121,6 +121,33 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
 	m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
+	//m_img_back.round_corner(140.0f);
+	//m_img_back.save(_T("d:\\round_corner(140.0f).png"));
+	//m_img_back.round_shadow_rect(200, 200, 0.0f);
+	//m_img_back.save(_T("d:\\round_shadow_rect(200, 200, 0.0f).png"));
+	//m_img_back.rgb_to_bgr();
+	//m_img_back.save(_T("d:\\rgb_to_bgr().png"));
+
+	//m_img_back.load(IDB_CREAM);
+	//m_img_back.adjust_bright(50);
+	//m_img_back.save(_T("d:\\adjust_bright(50).jpg"));
+
+	//m_img_back.adjust_bright(150);
+	//m_img_back.save(_T("d:\\adjust_bright(150).jpg"));
+	//m_img_back.adjust_contrast(555);
+	//m_img_back.save(_T("d:\\adjust_contrast(555).jpg"));
+	//m_img_back.sepia();
+	//m_img_back.save(_T("d:\\sepia.jpg"));
+	//m_img_back.gray(2.0f);
+	//m_img_back.save(_T("d:\\gray(2.0f).jpg"));
+	//m_img_back.negative();
+	//m_img_back.save(_T("d:\\negative().jpg"));
+	//m_img_back.black_and_white(1.0f, -1.0f, -1.0f);
+	//m_img_back.save(_T("d:\\black_and_white(1.0f, -1.0f, -1.0f).jpg"));
+	//m_img_back.polaroid();
+	//m_img_back.save(_T("d:\\polaroid().jpg"));
+
+
 	//m_img_back.apply_effect_blur(10, true);
 	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
@@ -267,12 +294,12 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			m_file_image->GetHeight());
 		*/
 
-		draw_text(g, rc, _T("123 한글 on image"), 140.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 8.0F, _T("맑은 고딕"),
-			Gdiplus::Color::Yellow,
-			Gdiplus::Color::Red,
-			Gdiplus::Color::Blue,
-			Gdiplus::Color::Transparent,
-			DT_CENTER | DT_BOTTOM);
+		//draw_text(g, rc, _T("123 한글 on image"), 140.0f, Gdiplus::FontStyle::FontStyleRegular, 10, 8.0F, _T("맑은 고딕"),
+		//	Gdiplus::Color::Yellow,
+		//	Gdiplus::Color::Red,
+		//	Gdiplus::Color::Blue,
+		//	Gdiplus::Color::Transparent,
+		//	DT_CENTER | DT_BOTTOM);
 	}
 }
 
@@ -403,7 +430,7 @@ void CTestGdiplusbitmapDlg::OnDropFiles(HDROP hDropInfo)
 	DragQueryFile(hDropInfo, 0, sfile, MAX_PATH);
 	//m_gif.load(sfile);
 	//m_gif.set_animation(m_hWnd);
-	m_img_cream.load(sfile);
+	m_img_back.load(sfile);
 	Invalidate();
 
 	CDialogEx::OnDropFiles(hDropInfo);

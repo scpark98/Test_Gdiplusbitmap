@@ -24,6 +24,7 @@ public:
 	CGdiplusBitmap m_img_cream;
 	CGdiplusBitmap m_copied;
 	CGdiplusBitmap m_gif;
+	CGdiplusBitmap m_jpg;
 
 	bool m_closed = false;
 
