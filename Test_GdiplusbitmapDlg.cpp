@@ -120,9 +120,9 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	GetClientRect(rc);
 
 	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
+	//m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
 	//m_img_back.apply_effect_blur(10, true);
-	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
 	//m_img_back.convert2gray();
 	// 
