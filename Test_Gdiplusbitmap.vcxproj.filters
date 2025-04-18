@@ -137,5 +137,11 @@
     <Image Include="res\권나라.jpg">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="res\folder_check.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\folder_zip.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

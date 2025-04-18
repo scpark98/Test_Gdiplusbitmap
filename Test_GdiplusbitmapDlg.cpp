@@ -119,10 +119,13 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	CRect rc;
 	GetClientRect(rc);
 
-	//m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
+	//m_img_ico.load_icon(IDR_MAINFRAME, 32);
+	m_img_ico.load_icon(IDI_FOLDER_CHECK, 32);
+
+	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
 	//m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);
 	//m_img_back.apply_effect_blur(10, true);
-	m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
+	//m_img_back.load(_T("z:\\내 드라이브\\media\\test_image\\window675.jpg"));
 	//m_img_back.round_corner(40, 0.0F, 0.0F, false);
 	//m_img_back.convert2gray();
 	// 
@@ -135,7 +138,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	// 
 	//draw_text(m_img_back.get_graphics(), CRect(0, 0, m_img_back.width, m_img_back.height), _T("text 한글 on image"), 70);
 
-	//m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
+	m_img_cream.load(_T("z:\\내 드라이브\\media\\test_image\\icecream.png"));
 	//m_img_cream.sub_image(Gdiplus::Rect(0, 0, m_img_cream.width / 2, m_img_cream.height / 2));
 	//m_img_cream.save(_T("d:\\test.png"));
 	//m_img_cream.replace_color(Gdiplus::Color(255, 50, 50, 50), Gdiplus::Color(128, 255, 0, 0));
@@ -233,6 +236,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		CMemoryDC	dc(&dc1, &rc, false);
 		Graphics	g(dc.m_hDC, rc);
 
+		g.SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);
+		g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+
 		int w = m_img_back.width;
 		int h = m_img_back.height;
 
@@ -273,6 +279,10 @@ void CTestGdiplusbitmapDlg::OnPaint()
 			Gdiplus::Color::Blue,
 			Gdiplus::Color::Transparent,
 			DT_CENTER | DT_BOTTOM);
+
+		m_img_ico.draw(g, 10, 10);
+
+		m_img_cream.draw(g, 10, 200);
 	}
 }
 
@@ -286,7 +296,7 @@ HCURSOR CTestGdiplusbitmapDlg::OnQueryDragIcon()
 
 void CTestGdiplusbitmapDlg::OnBnClickedOk()
 {
-	m_gif.pause_animation(0);
+	m_gif.pause_gif(0);
 	//m_gif.goto_frame_percent(50);
 	return;
 
@@ -363,7 +373,7 @@ void CTestGdiplusbitmapDlg::OnSize(UINT nType, int cx, int cy)
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	CRect rc;
 	GetClientRect(rc);
-	m_gif.move(rc);
+	m_gif.move_gif(rc);
 
 	Invalidate();
 }
@@ -381,7 +391,7 @@ BOOL CTestGdiplusbitmapDlg::PreTranslateMessage(MSG* pMsg)
 			break;
 		case VK_SPACE :
 			if (m_gif.is_valid())
-				m_gif.pause_animation();
+				m_gif.pause_gif();
 			break;
 		case 'S' :
 			if (IsCtrlPressed())

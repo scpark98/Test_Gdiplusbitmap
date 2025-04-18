@@ -77,7 +77,7 @@ void CAniGifDlg::OnBnClickedCancel()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	ShowWindow(SW_HIDE);
-	m_img.stop_animation();
+	m_img.stop_gif();
 	Wait(500);
 	CDialogEx::OnCancel();
 }
