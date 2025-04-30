@@ -57,6 +57,15 @@
     <ClInclude Include="..\..\Common\system\ShellImageList\ShellImageList.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Common\CStatic\SCParagraphStatic\SCParagraphStatic.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\CStatic\SCStatic\SCStatic.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\data_structure\SCParagraph\SCParagraph.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Test_Gdiplusbitmap.cpp">
@@ -84,6 +93,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Common\system\ShellImageList\ShellImageList.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\CStatic\SCParagraphStatic\SCParagraphStatic.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\CStatic\SCStatic\SCStatic.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Common\data_structure\SCParagraph\SCParagraph.cpp">
       <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>

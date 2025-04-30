@@ -7,6 +7,7 @@
 #include <vector>
 #include "../../Common/GdiplusBitmap.h"
 #include "AniGifDlg.h"
+#include "../../Common/CStatic/SCParagraphStatic/SCParagraphStatic.h"
 
 // CTestGdiplusbitmapDlg 대화 상자
 class CTestGdiplusbitmapDlg : public CDialogEx
@@ -56,4 +57,5 @@ public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnDropFiles(HDROP hDropInfo);
+	CSCParagraphStatic m_static_para;
 };
