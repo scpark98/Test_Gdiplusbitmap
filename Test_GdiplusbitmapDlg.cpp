@@ -62,7 +62,7 @@ CTestGdiplusbitmapDlg::CTestGdiplusbitmapDlg(CWnd* pParent /*=nullptr*/)
 void CTestGdiplusbitmapDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_STATIC_PARA, m_static_para);
+	//DDX_Control(pDX, IDC_STATIC_PARA, m_static_para);
 }
 
 BEGIN_MESSAGE_MAP(CTestGdiplusbitmapDlg, CDialogEx)
@@ -120,8 +120,8 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	CRect rc;
 	GetClientRect(rc);
 
-	m_static_para.set_back_color(Gdiplus::Color(128, 128, 128, 255));// AntiqueWhite);
-	m_static_para.set_text(_T("<f=궁서><b><cr=Red><u>This</b></cr> <sz=18>is</sz></u> a<br><cb=Red><i><sz=64>태</i>그</sz></f><cr=Green><b><sz=30>pa</f><cr=Yellow>ra<s>gr</cr>a</s>ph</b>."));
+	//m_static_para.set_back_color(Gdiplus::Color(128, 128, 128, 255));// AntiqueWhite);
+	//m_static_para.set_text(_T("<f=궁서><b><cr=Red><u>This</b></cr> <sz=18>is</sz></u> a<br><cb=Red><i><sz=64>태</i>그</sz></f><cr=Green><b><sz=30>pa</f><cr=Yellow>ra<s>gr</cr>a</s>ph</b>."));
 
 	//m_img_ico.load_icon(IDR_MAINFRAME, 32);
 	m_img_ico.load_icon(IDI_FOLDER_CHECK, 32);
