@@ -417,7 +417,7 @@ void CTestGdiplusbitmapDlg::OnDropFiles(HDROP hDropInfo)
 	DragQueryFile(hDropInfo, 0, sfile, MAX_PATH);
 	//m_gif.load(sfile);
 	//m_gif.set_animation(m_hWnd);
-	m_img_cream.load(sfile);
+	m_img_back.load(sfile);
 	Invalidate();
 
 	CDialogEx::OnDropFiles(hDropInfo);
