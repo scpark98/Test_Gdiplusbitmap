@@ -8,8 +8,8 @@
 #include "Test_GdiplusbitmapDlg.h"
 #include "afxdialogex.h"
 
-#include "../../Common/Functions.h"
-#include "../../Common/MemoryDC.h"
+#include "Common/Functions.h"
+#include "Common/MemoryDC.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -63,6 +63,7 @@ void CTestGdiplusbitmapDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	//DDX_Control(pDX, IDC_STATIC_PARA, m_static_para);
+	DDX_Control(pDX, IDC_STATIC_GIF, m_static_gif);
 }
 
 BEGIN_MESSAGE_MAP(CTestGdiplusbitmapDlg, CDialogEx)
@@ -110,6 +111,12 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	m_resize.Create(this);
+	m_resize.Add(IDC_STATIC_GIF, 0, 100, 0, 0);
+
+	m_static_gif.set_back_image(_T("GIF"), UINT(IDR_GIF_01), Gdiplus::Color(255, 255, 255, 255));
+	m_static_gif.fit_to_back_image(false);
+
 	//m_aniGifDlg.Create(IDD_ANIGIF, this);
 	//m_aniGifDlg.ShowWindow(SW_SHOW);
 
@@ -127,7 +134,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	m_img_ico.load_icon(IDI_FOLDER_CHECK, 32);
 
 	m_img_back.load(_T("JPG"), (UINT)IDB_WINDOW);
-	CGdiplusBitmap img;
+	CSCGdiplusBitmap img;
 	m_img_back.deep_copy(&img);
 	img.sub_image(Gdiplus::RectF(10, 10, 200, 100));
 	//m_img_back.load(_T("JPG"), (UINT)IDR_JPG_KWON);

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include <deque>
-#include "../../Common/Functions.h"
-#include "../../Common/GdiPlusBitmap.h"
+#include "Common/Functions.h"
+#include "Common/SCGdiPlusBitmap.h"
 
 // CAniGifDlg 대화 상자
 
@@ -26,7 +26,7 @@ protected:
 	};
 
 	void	render();
-	CGdiplusBitmap	m_img;
+	CSCGdiplusBitmap	m_img;
 
 
 protected:

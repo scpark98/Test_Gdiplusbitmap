@@ -5,9 +5,10 @@
 #pragma once
 
 #include <vector>
-#include "../../Common/GdiplusBitmap.h"
+#include "Common/SCGdiplusBitmap.h"
 #include "AniGifDlg.h"
-//#include "../../Common/CStatic/SCParagraphStatic/SCParagraphStatic.h"
+#include "Common/CStatic/SCStatic/SCStatic.h"
+#include "Common/ResizeCtrl.h"
 
 // CTestGdiplusbitmapDlg 대화 상자
 class CTestGdiplusbitmapDlg : public CDialogEx
@@ -16,16 +17,17 @@ class CTestGdiplusbitmapDlg : public CDialogEx
 public:
 	CTestGdiplusbitmapDlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
 
-	CAniGifDlg	m_aniGifDlg;
+	CResizeCtrl		m_resize;
+	CAniGifDlg		m_aniGifDlg;
 
 	CRect m_r;
 	CRect m_rotated;
 	std::vector<CPoint> m_pts;
-	CGdiplusBitmap m_img_back;
-	CGdiplusBitmap m_img_cream;
-	CGdiplusBitmap m_copied;
-	CGdiplusBitmap m_gif;
-	CGdiplusBitmap m_img_ico;
+	CSCGdiplusBitmap m_img_back;
+	CSCGdiplusBitmap m_img_cream;
+	CSCGdiplusBitmap m_copied;
+	CSCGdiplusBitmap m_gif;
+	CSCGdiplusBitmap m_img_ico;
 
 	bool m_closed = false;
 
@@ -58,4 +60,5 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	//CSCParagraphStatic m_static_para;
+	CSCStatic m_static_gif;
 };
