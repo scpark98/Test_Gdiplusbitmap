@@ -200,6 +200,20 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 	//bool result = kill_service(_T("RCClientService"));
 
+	CSCGdiplusBitmap img1;
+	//img1.create(600, 400);
+	img1.create_round_rect(800, 100, 50, Gdiplus::Color::Red, Gdiplus::Color::Blue, 4.0f);
+	img1.save(_T("d:\\test.png"));
+
+	CSCGdiplusBitmap shadow;
+	img1.create_back_shadow_image(&shadow, 5.0f, 0, 10);
+	shadow.save(_T("d:\\test_shadow.png"));
+
+	CSCGdiplusBitmap res(1000, 200);
+	res.draw(&shadow, 50, 50);
+	res.draw(&img1, 50, 50);
+	res.save(_T("d:\\test_res.png"));
+
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
