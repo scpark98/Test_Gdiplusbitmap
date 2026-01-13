@@ -130,6 +130,40 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_static_para.set_back_color(Gdiplus::Color(128, 128, 128, 255));// AntiqueWhite);
 	//m_static_para.set_text(_T("<f=궁서><b><cr=Red><u>This</b></cr> <sz=18>is</sz></u> a<br><cb=Red><i><sz=64>태</i>그</sz></f><cr=Green><b><sz=30>pa</f><cr=Yellow>ra<s>gr</cr>a</s>ph</b>."));
 
+	/*
+	m_img_color_wheel.create(60, 60, Gdiplus::Color::White);
+	Gdiplus::Graphics g(m_img_color_wheel);
+	Gdiplus::Pen pen(Gdiplus::Color(255, 221, 221, 221));
+	g.DrawRectangle(&pen, Gdiplus::Rect(0, 0, 60, 60));
+	g.SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);
+	g.SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);
+
+	float radius = 9.0f;
+	float overlap = 0.4f;						//3개 원이 겹치는 정도 (0.45~0.65 사이 추천)
+	float d = 2.0f * radius * (1.0f - overlap);// center-to-center distance
+	float h = d / std::sqrt(3.0f);                  // triangle height
+	std::deque<Gdiplus::PointF> pts;
+	std::deque<Gdiplus::Color> colors;
+	Gdiplus::PointF cp(30, 30);
+	pts.push_back(Gdiplus::PointF(cp.X - d * 0.5f, cp.Y + h * 0.5f));
+	pts.push_back(Gdiplus::PointF(cp.X + d * 0.5f, cp.Y + h * 0.5f));
+	pts.push_back(Gdiplus::PointF(cp.X, cp.Y - h));
+
+	int pastel = 16;
+	int alpha = 160;
+	colors.push_back(Gdiplus::Color(alpha, pastel, 255, pastel));
+	colors.push_back(Gdiplus::Color(alpha, pastel, pastel, 255));
+	colors.push_back(Gdiplus::Color(alpha, 255, pastel, pastel));
+
+	for (int i = 0; i < pts.size(); i++)
+		draw_ellipse(g, pts[i].X, pts[i].Y, radius, Gdiplus::Color::Transparent, colors[i]);
+
+	for (int i = 0; i < pts.size(); i++)
+		draw_ellipse(g, pts[i].X, pts[i].Y, radius, Gdiplus::Color(128, 0, 0, 0));
+	*/
+	m_img_color_wheel.create_rgb_color_wheel();
+	m_img_color_wheel.save(_T("d:\\tri_circle.png"));
+
 	//m_img_ico.load_icon(IDR_MAINFRAME, 32);
 	m_img_ico.load_icon(IDI_FOLDER_CHECK, 32);
 
@@ -200,6 +234,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	//m_gif.set_animation(m_hWnd, 50, 100, 150, 130);
 	//bool result = kill_service(_T("RCClientService"));
 
+	/* //shadow button image test
 	CSCGdiplusBitmap img1;
 	//img1.create(600, 400);
 	img1.create_round_rect(800, 100, 50, Gdiplus::Color::Red, Gdiplus::Color::Blue, 4.0f);
@@ -213,6 +248,7 @@ BOOL CTestGdiplusbitmapDlg::OnInitDialog()
 	res.draw(&shadow, 50, 50);
 	res.draw(&img1, 50, 50);
 	res.save(_T("d:\\test_res.png"));
+	*/
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -278,6 +314,9 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		m_img_back.draw(g, rc);
 		//g.DrawImage(m_img_back, (int)(rc.CenterPoint().x - m_img_back.m_pBitmap->GetWidth()/2), (int)(rc.CenterPoint().y - m_img_back.m_pBitmap->GetHeight()/2));
 
+		m_img_color_wheel.draw(&dc, 100, 100);
+		return;
+
 		m_img_cream.draw(g, 300, 200);
 
 		w = m_copied.width;
@@ -287,8 +326,8 @@ void CTestGdiplusbitmapDlg::OnPaint()
 		//ia.SetColorMatrix(&colorMatrix, ColorMatrixFlagsDefault, ColorAdjustTypeBitmap);
 		//g.DrawImage(m_copied, Rect(100, 100, m_copied.width(), m_copied.height()), 0, 0, w, h, UnitPixel, &ia);
 
-		draw_line(&dc, (int)0, (int)0, (int)(rc.right), (int)(rc.bottom), red);
-		draw_line(&dc, 0, rc.bottom, rc.right, 0, red);
+		//draw_line(&dc, (int)0, (int)0, (int)(rc.right), (int)(rc.bottom), red);
+		//draw_line(&dc, 0, rc.bottom, rc.right, 0, red);
 
 		//DrawRectangle(&dc, m_r, blue);
 		//DrawRectangle(&dc, m_rotated, violet);

@@ -28,6 +28,7 @@ public:
 	CSCGdiplusBitmap m_copied;
 	CSCGdiplusBitmap m_gif;
 	CSCGdiplusBitmap m_img_ico;
+	CSCGdiplusBitmap m_img_color_wheel;
 
 	bool m_closed = false;
 
